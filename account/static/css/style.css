@@ -1,0 +1,22 @@
+.register{
+    transform: scale(1.5);
+    height: 60%;
+    margin: auto;
+    width: 50%;
+}
+
+.login{
+    transform: scale(1.5);
+    height: 60%;
+    margin: auto;
+    width: 20%;
+
+
+}
+
+.wrapper{
+    background-color: #00452312;
+}
+.brand-logo{
+left: 1%;
+}
