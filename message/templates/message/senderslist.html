@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+
+{% block title %}
+Wiadomości
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for sender in senders %}
+        <a href="{% url 'message:answer' order.pk order.slug sender %}">{{sender}}</a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

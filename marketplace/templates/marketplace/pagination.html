@@ -1,0 +1,11 @@
+
+<ul class="pagination">
+    {% for i in page.paginator.page_range %}
+            <li {% if i == page.number %}
+                class="active disabled"
+                {% else %}
+                class="waves-effect"
+                {% endif %}>
+                <a href="?page={{i}}">{{i}}</a></li>
+    {% endfor %}
+</ul>

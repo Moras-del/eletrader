@@ -7,7 +7,7 @@ from django.dispatch import receiver
 class Profile(AbstractUser):
     description = models.CharField(max_length=200)
     phone_number = models.DecimalField(max_digits=20, decimal_places=0, null=True, blank=True)
-
+    e = models.Field
     def __str__(self):
         return self.username
 

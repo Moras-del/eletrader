@@ -1,0 +1,32 @@
+{% extends 'account/base.html' %}
+
+{% block title %}
+Wiadomość
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="center-align">
+        <h5>{{order}}, {{order.item_price}} zł x{{order.quantity}}</h5>
+    </div>
+    {% for message in messages %}
+        <div {% if message.user_from == request.user %}class="message-user"{% else %}class="message-other"{% endif %}>
+            <p>{{message.user_from}}</p>
+            <h5>{{message.content}}</h5>
+            <p>{{message.post_date|date:"d-m-y, G:i"}}</p>
+        </div>
+        <div class="divider"></div>
+    {% endfor %}
+
+    <form action="" method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="Wyślij">
+    </form>
+
+</div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

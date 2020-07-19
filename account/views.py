@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 
-from .forms import UserForm
+from .forms import UserForm, EditProfileForm
 
 
 class RegisterView(View):
@@ -22,3 +22,17 @@ class RegisterView(View):
 
 def profile(request):
     return render(request, 'account/profile.html')
+
+
+class EditProfile(View):
+
+    def get(self, request):
+        form = EditProfileForm(instance=request.user)
+        return render(request, "account/edit.html", {"form": form})
+
+    def post(self, request):
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('account:profile')
+        return render(request, "account/edit.html", {"form": form})

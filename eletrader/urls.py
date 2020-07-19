@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls', namespace='account')),
     path('', include('marketplace.urls', namespace='marketplace')),
+    path('message/', include('message.urls', namespace='message'))
 ]

@@ -6,14 +6,16 @@ Zaloguj się
 {% endblock %}
 
 {% block content %}
-<div class="wrapper card">
-    <div class="valign-wrapper center-align login">
-        <form method="post" action="{% url 'account:login' %}">
-            {% form %}
-            {% endform %}
-            {% csrf_token %}
-            <input type="submit" class="btn" value="Zaloguj">
-        </form>
+<div class="container">
+    <div class="wrapper card">
+        <div class="valign-wrapper center-align login">
+            <form method="post" action="{% url 'account:login' %}">
+                {% form %}
+                {% endform %}
+                {% csrf_token %}
+                <input type="submit" class="btn" value="Zaloguj">
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -5,5 +5,38 @@
 {% endblock %}
 
 {% block content %}
-<p>{{order.description}}</p>
+<div class="container">
+    <div class="order-info card">
+        <p class="flow-text">{{order.name}}</p>
+        <img class="responsive-img image" src="{{order.image.url}}">
+        <p>Rodzaj: {{order.type}}</p>
+        <blockquote>
+            {{order.description}}
+        </blockquote>
+        <p>Cena za sztukę: {{order.item_price}} zł, ilość: {{order.quantity}}</p>
+    </div>
+    <div class="owner-info">
+        {% with user=order.owner %}
+            <p>Zgłoszenie wysłane przez {{user}}</p>
+            <p>{{user.email}}</p>
+            {% if user.phone_number %}
+                <p>{{user.phone_number}}</p>
+            {% endif %}
+        {% endwith %}
+        {% if request.user != order.owner %}
+            <input type="button" class="btn" id="new-message-btn" value="Wyślij wiadomość"/>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("new-message-btn").onclick = redirect
+});
+
+function redirect(){
+    window.location.replace("/message/{{order.pk}}/{{order.slug}}")
+}
 {% endblock %}

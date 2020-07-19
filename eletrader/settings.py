@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'marketplace',
-    'django_filters',
     'material',
+    'message',
 ]
 
 
@@ -126,3 +126,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 LOGIN_REDIRECT_URL = "/account"
+
+LOGOUT_REDIRECT_URL = "/account/login"

@@ -4,19 +4,33 @@
     margin: auto;
     width: 50%;
 }
-
 .login{
     transform: scale(1.5);
     height: 60%;
     margin: auto;
     width: 20%;
-
-
 }
-
 .wrapper{
     background-color: #00452312;
 }
 .brand-logo{
-left: 1%;
+    left: 1%;
+}
+
+.left-side{
+    position: fixed;
+    left: 1%;
+    width: 10%;
+}
+.order-info{
+    text-align: center;
+}
+.message-user{
+    position: relative;
+    text-align: right;
+    background-color: #e3f2fd;
+}
+
+.message-other{
+    background-color: #e8f5e9;
 }

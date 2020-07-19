@@ -19,3 +19,14 @@ class UserForm(forms.ModelForm):
         if cd['password'] != cd['confirm_password']:
             raise forms.ValidationError('Hasła nie są identyczne')
         return cd['confirm_password']
+
+class EditProfileForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+        self.fields['phone_number'].label = "Numer telefonu"
+        self.fields['phone_number'].required = False
+
+    class Meta:
+        model = Profile
+        fields = ('phone_number', 'email')
