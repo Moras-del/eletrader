@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 
 from . import views
@@ -5,7 +6,7 @@ from . import views
 app_name = "message"
 
 urlpatterns = [
-    path('<int:pk>/<slug:slug>/', views.MessageView.as_view(), name="messages"),
-    path('<int:pk>/<slug:slug>/<str:username>/', views.MessageView.as_view(), name="answer"),
-    path('senders/<slug:slug>/', views.senders_view, name="senders"),
+    path('<int:pk>/<slug:slug>/', login_required(views.MessageView.as_view()), name="messages"),
+    path('<int:pk>/<slug:slug>/<str:username>/', login_required(views.MessageView.as_view()), name="answer"),
+    path('senders/<slug:slug>/', login_required(views.senders_view), name="senders"),
 ]

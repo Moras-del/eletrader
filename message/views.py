@@ -30,7 +30,8 @@ class MessageView(View):
             new_message = form.save(commit=False)
             new_message.user_from = request.user
             if user is None:
-                new_message.user_to = order.owner
+                new_message\
+                    .user_to = order.owner
             else:
                 new_message.user_to = user
             new_message.order = order

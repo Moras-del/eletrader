@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import ListView, DetailView
 
-from .filter import OrderFilter
-from .forms import OrderCreationForm
+from .order_management import OrderManagement
+from .forms import OrderCreationForm, SortForm
 from .models import Order
 from PIL import Image
 from marketplace.forms import FilterForm
@@ -17,18 +17,30 @@ class OrderList(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(OrderList, self).get_context_data(object_list=object_list, **kwargs)
-        context["form"] = FilterForm(self.request.GET)
+        context["filter"] = FilterForm(self.request.GET)
+        context["sort"] = SortForm(self.request.GET)
         return context
 
     def get_queryset(self):
         orders = super().get_queryset()
-        form = FilterForm(self.request.GET)
-        if form.is_valid():
-            cd = form.cleaned_data
-            filter_items = {k: v for k, v in cd.items() if v is not None}
-            my_filter = OrderFilter(filter_items)
-            orders = my_filter.get_filtered_orders()
-        return orders
+        om = OrderManagement(orders)
+        self.filter(om)
+        self.sorter(om)
+        return om.get_orders()
+
+    def filter(self, om):
+        filter_form = FilterForm(self.request.GET)
+        if filter_form.is_valid():
+            filter_cd = filter_form.cleaned_data
+            filter_items = {k: v for k, v in filter_cd.items() if v is not None}
+            om.filter_orders(filter_items)
+
+    def sorter(self, om):
+        sort_form = SortForm(self.request.GET)
+        if sort_form.is_valid():
+            sort_cd = sort_form.cleaned_data
+            if sort_cd['sorting']:
+                om.sort_orders(sort_cd)
 
 class OrderDetail(DetailView):
     model = Order

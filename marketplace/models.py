@@ -5,7 +5,6 @@ from PIL import Image
 from account.models import Profile
 from numpy import reshape
 
-
 class Order(models.Model):
     ORDER_TYPE = [
         ('Sprzedam', 'Sprzedam'),
