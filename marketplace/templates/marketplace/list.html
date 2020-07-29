@@ -11,7 +11,7 @@
                     </div>
                     <div class="card-content">
                         <p>{{order.name}}</p>
-                        <p>rodzaj: {{order.type}}</p>
+                        <p>rodzaj: {{order.order_type}}</p>
                         <p>{{order.quantity}} po {{order.item_price}} zł/sztuka</p>
                         {% if order.owner == request.user %}
                             <a href="{% url 'message:senders' order.slug %}">{{order.messages.all|length}} odpowied{{order.messages.all|pluralize:"ź,zi"}}</a>

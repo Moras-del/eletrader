@@ -2,13 +2,9 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-
 from message.forms import CreateMessageForm
-
 from marketplace.models import Order
-
 from message.models import Message
-
 from account.models import Profile
 
 

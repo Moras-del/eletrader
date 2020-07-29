@@ -38,7 +38,7 @@ class ManagingOrdersTestCase(TestCase):
     def test_filter_price(self):
         request = self.client.get(reverse("marketplace:list"), {"price_min": 5, "price_max": 35})
         context = request.context
-        self.assertListEqual(self.orders[1:4], list(context['orders']))
+        self.assertCountEqual(self.orders[1:4], list(context['orders']))
 
     def test_filter_name(self):
         request = self.client.get(reverse("marketplace:list"), {"text_search": "order_3"})
