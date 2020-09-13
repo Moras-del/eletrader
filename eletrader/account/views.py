@@ -19,6 +19,7 @@ class RegisterView(View):
             new_user.save()
             login(request, new_user)
             return redirect('account:profile')
+        return render(request, 'account/register.html', {'form': user_form})
 
 def profile(request):
     return render(request, 'account/profile.html')

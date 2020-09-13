@@ -1,12 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
 from account.models import Profile
-from material import Layout, Row
+from material.base import Layout, Row
 
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label='Hasło')
-    confirm_password = forms.CharField(widget=forms.PasswordInput, label='Powtórz hasło')
+    confirm_password = forms.CharField(widget=forms.PasswordInput, label='Powtórz hasło', required=False)
 
     layout = Layout('username', 'email', Row('password', 'confirm_password'))
 
