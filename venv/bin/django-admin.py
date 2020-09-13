@@ -1,4 +1,4 @@
-#!/home/szymon/Pulpit/eletrader-project/venv/bin/python
+#!/home/szymon/Pulpit/eletrader/venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

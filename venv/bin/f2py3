@@ -1,4 +1,4 @@
-#!/home/szymon/Pulpit/eletrader-project/venv/bin/python
+#!/home/szymon/Pulpit/eletrader/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

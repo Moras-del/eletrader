@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='/home/szymon/Pulpit/eletrader-project/venv'
+VIRTUAL_ENV='/home/szymon/Pulpit/eletrader/venv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
