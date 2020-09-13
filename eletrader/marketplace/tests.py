@@ -27,21 +27,21 @@ class ManagingOrdersTestCase(TestCase):
     def test_sort_lowest_price(self):
         request = self.client.get(reverse("marketplace:list"), {"sorting": "lowest_price"})
         context = request.context
-        self.assertListEqual(self.orders, context['orders'])
+        self.assertListEqual(context['orders'], self.orders)
 
     def test_sort_highest_price(self):
         request = self.client.get(reverse("marketplace:list"), {"sorting": "highest_price"})
         context = request.context
         orders = list(reversed(self.orders))
-        self.assertListEqual(orders, context['orders'])
+        self.assertListEqual(context['orders'], orders)
 
     def test_filter_price(self):
         request = self.client.get(reverse("marketplace:list"), {"price_min": 5, "price_max": 35})
         context = request.context
-        self.assertCountEqual(self.orders[1:4], list(context['orders']))
+        self.assertCountEqual(list(context['orders']), self.orders[1:4])
 
     def test_filter_name(self):
         request = self.client.get(reverse("marketplace:list"), {"text_search": "order_3"})
         context = request.context
         self.assertEquals(1, len(context['orders']))
-        self.assertEquals(self.orders[3], context['orders'][0])
+        self.assertEquals(context['orders'][0], self.orders[3])
