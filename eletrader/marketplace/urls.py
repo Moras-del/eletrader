@@ -10,6 +10,7 @@ app_name = 'marketplace'
 urlpatterns = [
     path('', views.OrderList.as_view(), name='list'),
     path('order/<int:pk>/<slug:slug>', views.OrderDetail.as_view(), name='detail'),
+    path('order/edit/<int:pk>/<slug:slug>', login_required(views.OrderEdit.as_view()), name='edit'),
     path('order/new', login_required(views.OrderCreation.as_view()), name='create'),
 
 ]

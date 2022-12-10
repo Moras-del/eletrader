@@ -14,10 +14,12 @@ class Order(models.Model):
     ITEM_TYPE = [
         ('Układ scalony', 'Układ scalony'),
         ('Półprzewodnik', 'Półprzewodnik'),
-        ('LED', 'LED'),
+        ('Dioda', 'Dioda'),
         ('Wyświetlacz', 'Wyświetlacz'),
         ('Element pasywny', 'Element pasywny'),
         ('Złącze', 'Złącze'),
+        ('Procesor', 'Procesor'),
+        ('Pamięć', 'Pamięć')
     ]
 
     MAX_PRICE_VALUE = 9999
@@ -34,7 +36,7 @@ class Order(models.Model):
 
     item_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
     quantity = models.DecimalField(max_digits=5, decimal_places=0)
-
+    clicks = models.ManyToManyField(Profile)
 
     class Meta:
         ordering = ('-created',)
@@ -48,5 +50,9 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
+        Image.open(self.image).resize((400, 400), Image.ANTIALIAS).save(self.image.path)
         return super(Order, self).save(*args, **kwargs)
+    
+    def get_active_messages(self, user_from):
+        return self.messages.filter(user_from=user_from, is_active=True).count()
 

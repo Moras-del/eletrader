@@ -22,8 +22,6 @@ class FilterForm(forms.ModelForm):
         model = Order
         fields = ('order_type', 'item_type')
 
-
-
 class SortForm(forms.Form):
 
     class SORTING_OPTIONS(Enum):
@@ -34,9 +32,9 @@ class SortForm(forms.Form):
             return inner
 
         DATE_NEW = ('date_newest', 'Od najnowszych', sort_orders(key=lambda order: order.created, reverse=True))
+        DATE_OLD = ('date_oldest', 'Od najstarszych', sort_orders(key=lambda order: order.created))
         PRICE_LOW = ('lowest_price', 'Od najtańszych', sort_orders(key=lambda order: order.item_price))
         PRICE_HIGH = ('highest_price', 'Od najdroższych', sort_orders(key=lambda order: order.item_price, reverse=True))
-        DATE_OLD = ('date_oldest', 'Od najstarszych', sort_orders(key=lambda order: order.created))
 
         def to_choices(self):
             return (self.value[0], self.value[1])
@@ -61,3 +59,18 @@ class OrderCreationForm(forms.ModelForm):
             'item_price': 'Cena za sztukę',
             'quantity': 'Ilość produktów',
         }
+
+class OrderEditForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('name', 'description', 'item_price', 'quantity')
+        labels = {
+            'name': 'Nazwa produktu',
+            'order_type': 'Rodzaj ogłoszenia',
+            'item_type': 'Rodzaj produktu',
+            'description': 'Opis ogłoszenia',
+            'image': 'Zdjęcie produktu',
+            'item_price': 'Cena za sztukę',
+            'quantity': 'Ilość produktów',
+        }
+

@@ -8,6 +8,10 @@ Moje konto
 <div class="container">
     <p>Witaj na swoim profilu</p>
     <a href="{% url 'account:edit' %}">Edytuj</a>
+    <p>Nowe wiadomości: </p>
+    {% for message in active_messages %}
+        <a href="{% url 'message:messages-owner' message.order.pk message.order.slug message.user_from %}">{{message}}</a>
+    {% endfor %}
     {% with orders=request.user.orders.all %}
         {% if orders|length == 0 %}
             <p>Nie masz żadnych ogłoszeń. <a href="{% url 'marketplace:create' %}">Dodaj zgłoszenie!</a></p>

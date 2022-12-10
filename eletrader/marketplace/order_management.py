@@ -26,7 +26,7 @@ class OrderManagement:
                     item_type__contains=item_type,
                     item_price__lte=price_max,
                     item_price__gte=price_min,
-                    name__contains=text)
+                    name__icontains=text)
 
         #
         # for order in orders:

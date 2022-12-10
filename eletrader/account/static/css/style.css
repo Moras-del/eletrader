@@ -17,10 +17,10 @@
     left: 1%;
 }
 
-
-.order-info{
+.order-info {
     text-align: center;
 }
+
 .message-user{
     position: relative;
     text-align: right;
@@ -29,4 +29,12 @@
 
 .message-other{
     background-color: #e8f5e9;
+}
+
+body {
+ background-image: url("../background.jpg");
+ background-color: #cccccc;
+}
+label {
+    color: black;
 }

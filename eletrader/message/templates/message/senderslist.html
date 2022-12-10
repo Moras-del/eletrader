@@ -1,17 +1,9 @@
-{% extends 'account/base.html' %}
-
-{% block title %}
-Wiadomości
-{% endblock %}
-
-{% block content %}
 <div class="container">
-    {% for sender in senders %}
-        <a href="{% url 'message:answer' order.pk order.slug sender %}">{{sender}}</a>
+    {% for sender in senders.items %}
+        <a style="padding: 1%; margin: 1%;" href="{% url 'message:messages-owner' order.pk order.slug sender.0 %}">({{sender.1}} nowych) {{sender.0}}</a>
+        <div class="divider"></div>
     {% endfor %}
+    {% if senders.items|length == 0 %}
+        <p class="flow-text">Narazie żadna osoba nie jest zainteresowana.</p>
+    {% endif %}
 </div>
-{% endblock %}
-
-{% block js %}
-
-{% endblock %}

@@ -1,19 +1,17 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic import ListView, DetailView
 
 from .order_management import OrderManagement
-from .forms import OrderCreationForm, SortForm
+from .forms import OrderCreationForm, SortForm, OrderEditForm, FilterForm
 from .models import Order
-from PIL import Image
-from marketplace.forms import FilterForm
 
 
 class OrderList(ListView):
     model = Order
     template_name = 'marketplace/mainpage.html'
     context_object_name = 'orders'
-    paginate_by = 12
+    paginate_by = 8
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(OrderList, self).get_context_data(object_list=object_list, **kwargs)
@@ -49,6 +47,28 @@ class OrderDetail(DetailView):
     pk_url_kwarg = 'pk'
     query_pk_and_slug = True
     context_object_name = 'order'
+
+    def get_object(self):
+        order = super().get_object()
+        if self.request.user.is_authenticated and self.request.user != order.owner:
+            order.clicks.add(self.request.user)
+            order.save()
+        return order
+
+class OrderEdit(View):
+
+    def get(self, request, pk, slug):
+        order = get_object_or_404(Order, pk=pk, slug=slug, owner=request.user)
+        form = OrderEditForm(instance=order)
+        return render(request, "marketplace/edit.html", {"form": form})
+
+    def post(self, request, pk, slug):
+        order = get_object_or_404(Order, pk=pk, slug=slug, owner=request.user)
+        form = OrderEditForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('marketplace:detail', pk, slug)
+        return render(request, "marketplace/edit.html", {"form": form})
 
 
 class OrderCreation(View):

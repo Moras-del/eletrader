@@ -16,7 +16,7 @@ Strona główna
     <div class="col s8">
         {% include "marketplace/list.html" with orders=orders %}
     </div>
-    <div class="col s2">
+    <div class="col s2 sorters">
         <form method="get" action="">
             {{sort}}
             <input type="submit" class="btn" value="sortuj">

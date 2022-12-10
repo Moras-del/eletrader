@@ -23,7 +23,6 @@ class ManagingOrdersTestCase(TestCase):
                                             owner=user,
                                             image=image) for i in range(6)]
 
-
     def test_sort_lowest_price(self):
         request = self.client.get(reverse("marketplace:list"), {"sorting": "lowest_price"})
         context = request.context

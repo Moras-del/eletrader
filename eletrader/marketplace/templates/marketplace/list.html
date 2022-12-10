@@ -6,16 +6,13 @@
                 <div class="card">
                     <div class="card-image">
                         <a href="{{order.get_absolute_url}}">
-                            <img class="responsive-img" src="{{order.image.url}}">
+                            <img class="responsive-img" src="{{order.image.url}}" style="width: 300px; height: 300px;">
                         </a>
                     </div>
                     <div class="card-content">
                         <p>{{order.name}}</p>
                         <p>rodzaj: {{order.order_type}}</p>
                         <p>{{order.quantity}} po {{order.item_price}} zł/sztuka</p>
-                        {% if order.owner == request.user %}
-                            <a href="{% url 'message:senders' order.slug %}">{{order.messages.all|length}} odpowied{{order.messages.all|pluralize:"ź,zi"}}</a>
-                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ class MessageView(View):
     def get(self, request, pk, slug, username=None):
         order = get_object_or_404(Order, pk=pk, slug=slug)
         messages = self.get_all_messages(request, order, username)
+        messages.update(is_active=False)
         form = CreateMessageForm()
         return render(request, "message/messages.html", {"form": form, "messages": messages, "order": order})
 
@@ -36,6 +37,8 @@ class MessageView(View):
 
 
 def senders_view(request, slug):
-    order = get_object_or_404(Order, slug=slug, user=request.user)
-    senders = set([message.user_from for message in order.messages.all() if message.user_to == request.user])
-    return render(request, "message/senderslist.html", {"senders": senders, "order": order})
+    order = get_object_or_404(Order, slug=slug, owner=request.user)
+    senders = {}
+    for message in order.messages.filter(user_to=request.user):
+        senders[message.user_from] = order.get_active_messages(message.user_from)
+    return render(request, "message/senders.html", {"senders": senders, "order": order})
