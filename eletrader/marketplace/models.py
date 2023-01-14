@@ -34,7 +34,7 @@ class Order(models.Model):
     order_type = models.CharField(max_length=20, choices=ORDER_TYPE)
     item_type = models.CharField(max_length=40, choices=ITEM_TYPE)
 
-    item_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
+    item_price = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     quantity = models.DecimalField(max_digits=5, decimal_places=0)
     clicks = models.ManyToManyField(Profile)
 
