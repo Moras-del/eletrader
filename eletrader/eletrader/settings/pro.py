@@ -1,25 +1,20 @@
 from .base import *
 
-DEBUG = True
-
-ADMINS = (
-    ('Szymon M', 'morekszymon@wp.pl'),
-)
+DEBUG = False
 
 ALLOWED_HOSTS = ['eletrader.com', 'www.eletrader.com', 'localhost']
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'eletrader',
+        'USER': 'eletrader_user',
+        'PASSWORD': 'eletrader_password',
+        'HOST': 'db',
+        'PORT': '5432'
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'eletraderdb',
-#         'USER': 'eletraderuser',
-#         'PASSWORD': 'eletraderpassword',
-#     }
-# }
-MEDIA_ROOT = '/home/szymon/media'
-STATIC_ROOT = '/home/szymon/static'
+
+# MEDIA_ROOT = '/home/szymon/media'
+# STATIC_ROOT = '/home/szymon/static'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
