@@ -1,0 +1,24 @@
+<div class="row">
+    {% for order in orders %}
+    <div class="col s3">
+        <div class="order-wrapper">
+            <div class="order">
+                <div class="card">
+                    <div class="card-image">
+                        <a href="{{order.get_absolute_url}}">
+                            <img class="responsive-img" src="{{order.image.url}}" style="width: 300px; height: 300px;">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <p>{{order.name}}</p>
+                        <p>rodzaj: {{order.order_type}}</p>
+                        <p>{{order.quantity}} po {{order.item_price}} zł/sztuka</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="divider"></div>
+{% include "marketplace/pagination.html" with page=page_obj %}

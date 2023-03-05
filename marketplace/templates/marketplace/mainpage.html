@@ -1,0 +1,40 @@
+{% extends 'account/base.html' %}
+
+{% block title %}
+Strona główna
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col s2">
+        <form method="get" action="">
+            {{filter.as_p}}
+            <input type="submit" class="btn" value="filtruj">
+        </form>
+    <input type="button" class="btn" id="new-order-button" value="Stwórz ogłoszenie">
+    </div>
+    <div class="col s8">
+        {% include "marketplace/list.html" with orders=orders %}
+    </div>
+    <div class="col s2 sorters">
+        <form method="get" action="">
+            {{sort}}
+            <input type="submit" class="btn" value="sortuj">
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, ['']);
+    document.getElementById("new-order-button").onclick = redirect
+
+});
+
+function redirect(){
+    window.location.replace("/order/new")
+}
+
+{% endblock %}

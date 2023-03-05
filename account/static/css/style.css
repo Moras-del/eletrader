@@ -1,0 +1,39 @@
+.register{
+    transform: scale(1.5);
+    height: 60%;
+    margin: auto;
+    width: 50%;
+}
+.login{
+    transform: scale(1.5);
+    height: 60%;
+    margin: auto;
+    width: 20%;
+}
+.wrapper{
+    background-color: #00452312;
+}
+.brand-logo{
+    left: 1%;
+}
+
+.order-info {
+    text-align: center;
+}
+
+.message-user{
+    position: relative;
+    text-align: right;
+}
+
+.message-other{
+}
+
+body {
+ background-image: url("../background.jpg");
+ background-color: #cccccc;
+}
+label {
+    color: black;
+    font-weight: bold;
+}

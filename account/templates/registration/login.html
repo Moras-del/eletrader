@@ -1,0 +1,21 @@
+{% extends 'account/base.html' %}
+{% load material_form %}
+
+{% block title %}
+Zaloguj się
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="wrapper card">
+        <div class="valign-wrapper center-align login">
+            <form method="post" action="{% url 'account:login' %}">
+                {% form %}
+                {% endform %}
+                {% csrf_token %}
+                <input type="submit" class="btn" value="Zaloguj">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
