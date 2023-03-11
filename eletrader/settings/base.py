@@ -23,11 +23,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.join(__file__
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'd5!^m2*d^)0@e(wgcuhw7eevmb$$ub66id3@wh)=$!8=kmgb-d'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-
-ALLOWED_HOSTS = ['192.168.0.150', 'localhost']
-
-
 # Application definition
 
 INSTALLED_APPS = [

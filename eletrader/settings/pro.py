@@ -1,8 +1,9 @@
 from .base import *
 
-DEBUG = False
+DEBUG = False 
 
-ALLOWED_HOSTS = ['eletrader.com', 'www.eletrader.com', 'localhost']
+ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', '[::1]' ]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:1337", "https://nginx:1337"]
 
 DATABASES = {
     'default': {
@@ -15,6 +16,22 @@ DATABASES = {
     }
 }
 
-# MEDIA_ROOT = '/home/szymon/media'
-# STATIC_ROOT = '/home/szymon/static'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',
+    },
+}
