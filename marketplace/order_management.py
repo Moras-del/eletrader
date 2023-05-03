@@ -28,12 +28,6 @@ class OrderManagement:
                     item_price__gte=price_min,
                     name__icontains=text)
 
-        #
-        # for order in orders:
-        #     order.location = Location(order.latitude, order.longitude)
-        #
-        # orders = sorted(orders, key=lambda k:k.location.get_distance(user.get_location()))
-
     def sort_orders(self, query: dict):
         sort_option = query.get("sorting")
         func = SortForm.SORTING_OPTIONS.get_function(sort_option)

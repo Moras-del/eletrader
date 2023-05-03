@@ -1,16 +1,16 @@
 {% extends 'account/base.html' %}
 {% load static %}
 {% block title %}
-Moje konto
+My profile
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <p>Witaj na swoim profilu</p>
-    <a href="{% url 'account:edit' %}">Edytuj</a>
+    <p>Welcome on your profile</p>
+    <a href="{% url 'account:edit' %}">Edit</a>
     {% with orders=request.user.orders.all %}
         {% if orders|length == 0 %}
-            <p>Nie masz żadnych ogłoszeń. <a href="{% url 'marketplace:create' %}">Dodaj zgłoszenie!</a></p>
+            <p>No orders. <a href="{% url 'marketplace:create' %}">Create order!</a></p>
         {% else %}
             {% include "marketplace/list.html" with orders=orders %}
         {% endif %}
