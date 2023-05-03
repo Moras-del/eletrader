@@ -20,4 +20,4 @@ class Message(models.Model):
     class Meta:
         ordering = ('post_date',)
     def __str__(self):
-        return 'Wiadomość od {} do {} dotycząca {}'.format(self.user_from, self.user_to, self.order)
+        return 'Message from {} to {} about {}'.format(self.user_from, self.user_to, self.order)

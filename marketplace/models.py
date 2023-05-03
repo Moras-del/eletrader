@@ -7,19 +7,19 @@ from numpy import reshape
 
 class Order(models.Model):
     ORDER_TYPE = [
-        ('Sprzedam', 'Sprzedam'),
-        ('Kupię', 'Kupię'),
+        ('Sell', 'Sell'),
+        ('Buy', 'Buy'),
     ]
 
     ITEM_TYPE = [
-        ('Układ scalony', 'Układ scalony'),
-        ('Półprzewodnik', 'Półprzewodnik'),
-        ('Dioda', 'Dioda'),
-        ('Wyświetlacz', 'Wyświetlacz'),
-        ('Element pasywny', 'Element pasywny'),
-        ('Złącze', 'Złącze'),
-        ('Procesor', 'Procesor'),
-        ('Pamięć', 'Pamięć')
+        ('IC', 'Integrated circuit'),
+        ('Semiconductor', 'Semiconductor'),
+        ('Diode', 'Diode'),
+        ('Display', 'Display'),
+        ('Passive element', 'Passive element'),
+        ('Connector', 'Connector'),
+        ('Processor', 'Processor'),
+        ('Memory', 'Memory')
     ]
 
     MAX_PRICE_VALUE = 9999

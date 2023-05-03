@@ -24,6 +24,17 @@
         </ul>
     </div>
 </nav>
+{% if messages %}
+<div class="container">
+    <div class="wrapper card">
+        <div class="valign-wrapper center-align" style="background-color: aquamarine;">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
 {% block content %}
 {% endblock %}
 <script>

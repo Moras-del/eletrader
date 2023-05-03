@@ -2,13 +2,13 @@
 {% load material_form %}
 
 {% block title %}
-Zaloguj się
+Log in
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="wrapper card">
-        <div class="valign-wrapper center-align login">
+        <div class="valign-wrapper center-align auth">
             <form method="post" action="{% url 'account:login' %}">
                 {% form %}
                 {% endform %}
